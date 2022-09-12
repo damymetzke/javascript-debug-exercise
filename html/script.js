@@ -1,7 +1,7 @@
 const elements = new Map(
-  ["input-confirm", "list", "input"]
+  ["inputConfirm", "list", "input"]
     .map(
-      id => ([id, document.getElementById(id)])
+      id => [id, document.getElementById(id)]
     )
 );
 
@@ -13,18 +13,20 @@ function renderList() {
 
   for (const [i, {text, complete}] of items.entries()) {
     list.innerHTML += `
-<div class="list-item${complete ? " complete" : ""}">
+<div class="list-item${complete ? "complete" : ""}">
   <div class="item-title">
     ${text}
   </div>
   <div class="item-complete">
-      <button onclick="complete(${i}, ${complete})" class="item-complete-submit">
+      <button onclick="complete(i, complete)" class="item-complete-submit">
         ${complete ? "uncomplete" : "complete"}
       </button>
   </div>
 </div>
 `;
   }
+
+  elements["length"].innerHTML = items.length;
 }
 
 function complete(i, current) {
@@ -33,7 +35,7 @@ function complete(i, current) {
 }
 
 
-elements.get("input-confirm").addEventListener("click", () => {
+elements.get("inputConfirm").addEventListener("click", () => {
   const text = elements.get("input").value;
   items.push({text, complete: false});
   renderList();
