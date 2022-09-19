@@ -1,4 +1,4 @@
-const data = await (await fetch("./data.json")).json();
+const data = await (await fetch("./data.json")).text();
 
 const elements = new Map(
   ["inputConfirm", "list", "input", "input-category"]
