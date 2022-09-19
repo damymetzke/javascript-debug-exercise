@@ -1,5 +1,7 @@
+const data = await (await fetch("./data.json")).json();
+
 const elements = new Map(
-  ["inputConfirm", "list", "input"]
+  ["inputConfirm", "list", "input", "input-category"]
     .map(
       id => [id, document.getElementById(id)]
     )
@@ -11,11 +13,16 @@ function renderList() {
   const list = elements.get("list");
   list.innerHTML = "";
 
-  for (const [i, {text, complete}] of items.entries()) {
+  for (const [i, {description, category, complete}] of items.entries()) {
     list.innerHTML += `
 <div class="list-item${complete ? "complete" : ""}">
+  <div class="item-category">
+    <div>
+      ${category}
+    </div>
+  </div>
   <div class="item-title">
-    ${text}
+    ${description}
   </div>
   <div class="item-complete">
       <button onclick="complete(i, complete)" class="item-complete-submit">
@@ -34,11 +41,19 @@ function complete(i, current) {
   renderList();
 }
 
+elements.get("input-category").innerHTML = data
+  .categories
+  .map((category, i) => `
+<option value="${i}">
+${category}
+</option>
+`)
+  .join();
 
 elements.get("inputConfirm").addEventListener("click", () => {
-  const text = elements.get("input").value;
-  items.push({text, complete: false});
+  const description = elements.get("input").value;
+  const category = elements.get("input-category").value;
+  items.push({description, category, complete: false});
   renderList();
 });
-
 

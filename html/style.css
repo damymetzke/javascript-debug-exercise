@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 
-#input, #input-confirm, #list {
+#input, #input-confirm, #list, #input-category {
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -10,9 +10,19 @@ body {
   padding: 0;
 }
 
+#input {
+  margin-bottom: 1rem;
+}
+
 #input-confirm {
   margin-top: 1rem;
   margin-bottom: 10rem;
+}
+
+label {
+  text-align: center;
+  margin: auto;
+  display: block;
 }
 
 h1, h2, .item-title {
@@ -32,11 +42,19 @@ h2 {
   border-top: solid 2px black;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
 }
 
 .list-item:first-child {
   border: none;
+}
+
+.item-category {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: solid 2px black;
 }
 
 .item-title {
