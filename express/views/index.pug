@@ -10,6 +10,16 @@ html
       p Difficulty
       input(type="number" name="difficulty")
       button(type="submit") Add task
+    div#stats-wrapper
+      ul#stats
+        li
+          div
+            p Average:
+          p= average
+        li
+          div
+            p Median:
+          p= median
     ol#list
       each item in list
         li(class=item.complete ? "complete" : "")
