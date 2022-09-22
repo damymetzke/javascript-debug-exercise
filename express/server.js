@@ -42,7 +42,14 @@ app.get("/", (__, res) => {
 
 app.post("/", (req, res) => {
   const { description, difficulty } = req.body;
-  tasks.push({ description, difficulty, complete: false, id: ++idIncrement });
+  let difficultyClass = "easy";
+  if(difficulty > 3) {
+    difficultyClass = "medium";
+  }
+  if(difficulty > 7) {
+    difficultyClass = "hard";
+  }
+  tasks.push({ description, difficulty, complete: false, id: ++idIncrement, difficultyClass });
   res.redirect("/");
 })
 

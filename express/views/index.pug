@@ -22,8 +22,9 @@ html
           p= median
     ol#list
       each item in list
-        li(class=item.complete ? "complete" : "")
-          p= item.difficulty
+        li(class=item.complete ? "complete " + item.difficultyClass : item.difficultyClass)
+          div
+            p= item.difficulty
           p= item.description
           form(method="POST" action="/" + item.id)
             button(type="submit")= item.complete ? "uncomplete" : "complete"
