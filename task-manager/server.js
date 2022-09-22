@@ -20,8 +20,8 @@ app.get("/", (__, res) => {
   if (activeTasks.length === 0) {
     res.render("index", {
       list: tasks,
-      average: "-",
-      median: "-",
+      stats: [
+      ],
     });
   }
   else {
@@ -33,8 +33,10 @@ app.get("/", (__, res) => {
 
     res.render("index", {
       list: tasks.sort(({ difficulty: a }, { difficulty: b }) => a - b),
-      average: totalDifficulty / activeTasks.length,
-      median,
+      stats: [
+        ["Average", totalDifficulty / activeTasks.length],
+        ["Median", median],
+      ],
     });
   }
 
