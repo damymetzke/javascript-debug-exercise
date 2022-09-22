@@ -1,0 +1,12 @@
+h1, #create > * {
+  width: min(40rem, 90vw);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#create {
+  border-bottom: solid 2px black;
+  padding-bottom: 5rem;
+}

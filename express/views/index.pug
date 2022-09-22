@@ -1,15 +1,15 @@
 html
   head
     title Task Manager
+    link(rel="stylesheet" href="style.css")
   body
     h1 Task Manager
-    div#create
+    form(method="POST" action="/")#create
       p Description
-      input#create-description
+      input(name="description")
       p Difficulty
-      input(type="number")#create-difficulty
-
-    h2 Current Tasks
+      input(type="number" name="difficulty")
+      button(type="submit") Add task
     ol#list
       each item in list
         li
