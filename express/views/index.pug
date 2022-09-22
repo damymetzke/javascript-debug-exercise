@@ -1,0 +1,17 @@
+html
+  head
+    title Task Manager
+  body
+    h1 Task Manager
+    div#create
+      p Description
+      input#create-description
+      p Difficulty
+      input(type="number")#create-difficulty
+
+    h2 Current Tasks
+    ol#list
+      each item in list
+        li
+          p= item.description
+          p= item.difficulty
