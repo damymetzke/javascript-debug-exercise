@@ -1,12 +1,49 @@
 h1, #create > * {
-  width: min(40rem, 90vw);
-  text-align: center;
+  width: min(20rem, 90vw);
   margin-left: auto;
   margin-right: auto;
   display: block;
 }
 
+p, h1 {
+  text-align: center;
+}
+
 #create {
   border-bottom: solid 2px black;
   padding-bottom: 5rem;
+}
+
+#create > button {
+  margin-top: 1rem;
+}
+
+#list {
+  list-style: none;
+  padding: 0;
+  width: min(30rem, 90vw);
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#list li {
+  margin-bottom: 0.5rem;
+  border: solid 1px black;
+  background-color: #eee;
+  border-radius: 0.5rem;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 3fr 1fr;
+}
+
+#list form {
+  margin-block-end: 0;
+  padding: 0.3rem;
+}
+
+#list button {
+  width: 100%;
+  height: 100%;
 }

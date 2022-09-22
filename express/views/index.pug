@@ -12,6 +12,8 @@ html
       button(type="submit") Add task
     ol#list
       each item in list
-        li
-          p= item.description
+        li(class=item.complete ? "complete" : "")
           p= item.difficulty
+          p= item.description
+          form(method="POST" action="/" + item.id)
+            button(type="submit")= item.complete ? "uncomplete" : "complete"
