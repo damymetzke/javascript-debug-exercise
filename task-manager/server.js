@@ -4,7 +4,6 @@ import { fileURLToPath } from "url";
 import _ from "lodash";
 
 const app = express();
-app.listen(process.env.PORT ?? "3000")
 
 app.set("view engine", "pug");
 
@@ -89,5 +88,5 @@ app.post("/:id", (req, res) => {
   res.redirect("/");
 })
 
-app.listen(3000);
+app.listen(process.env.PORT ?? "3000")
 
