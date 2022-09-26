@@ -17,7 +17,7 @@ app.get("/", (__, res) => {
   tasks.sort(({ difficulty: a }, { difficulty: b }) => a - b);
   const activeTasks = tasks.filter(({ complete }) => !complete);
 
-  if (activeTasks.length === 0) {
+  if(tasks.length === 0) {
     res.render("index", {
       list: tasks,
       stats: [
@@ -25,19 +25,42 @@ app.get("/", (__, res) => {
     });
   }
   else {
-    const totalDifficulty = _.sum(activeTasks.map(({ difficulty }) => difficulty));
+      const totalDifficulty = _.sum(tasks.map(({ difficulty }) => difficulty));
 
-    const median = activeTasks.length % 2 === 0
-      ? (activeTasks[activeTasks.length / 2 - 1].difficulty + activeTasks[activeTasks.length / 2].difficulty) / 2
-      : activeTasks[Math.floor(activeTasks.length / 2)].difficulty;
+      const totalMedian = tasks.length % 2 === 0
+        ? (tasks[tasks.length / 2 - 1].difficulty + tasks[tasks.length / 2].difficulty) / 2
+        : tasks[Math.floor(tasks.length / 2)].difficulty;
 
-    res.render("index", {
-      list: tasks.sort(({ difficulty: a }, { difficulty: b }) => a - b),
-      stats: [
-        ["Average", totalDifficulty / activeTasks.length],
-        ["Median", median],
-      ],
-    });
+    if (activeTasks.length === 0) {
+      res.render("index", {
+        list: tasks,
+        stats: [
+          ["Difficulty Remaining", `0/${totalDifficulty}`],
+          ["Completion", "100%"],
+          ["Average (total)", totalDifficulty / tasks.length],
+          ["Median (total)", totalMedian],
+        ],
+      });
+    }
+    else {
+      const activeDifficulty = _.sum(activeTasks.map(({ difficulty }) => difficulty));
+
+      const activeMedian = activeTasks.length % 2 === 0
+        ? (activeTasks[activeTasks.length / 2 - 1].difficulty + activeTasks[activeTasks.length / 2].difficulty) / 2
+        : activeTasks[Math.floor(activeTasks.length / 2)].difficulty;
+
+      res.render("index", {
+        list: tasks.sort(({ difficulty: a }, { difficulty: b }) => a - b),
+        stats: [
+          ["Difficulty Remaining", `${activeDifficulty}/${totalDifficulty}`],
+          ["Completion", (1 - activeDifficulty / totalDifficulty).toString().substring(0, 4) + "%"],
+          ["Average (to do)", activeDifficulty / activeTasks.length],
+          ["Median (to do)", activeMedian],
+          ["Average (total)", totalDifficulty / tasks.length],
+          ["Median (total)", totalMedian],
+        ],
+      });
+    }
   }
 
 })
