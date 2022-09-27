@@ -3,4 +3,16 @@ html
     title Hello World!
     link(rel="stylesheet" href="style.css")
   body
-    h1 Hello World!
+    h1 Chatroom
+    div#name
+      h2 Please enter a diplay name
+      input#name-input
+    div#chat
+      ul#chat-content
+        li
+          div.message-name(style=`background-color: #40dd64; color: #000`) One
+          div.message This is a chat message
+        li
+          div.message-name(style=`background-color: #604512; color: #fff`) Two
+          div.message This is another chat message
+      input#chat-input

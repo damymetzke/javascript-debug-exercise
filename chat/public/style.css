@@ -1,3 +1,51 @@
-h1 {
+h1, h2 {
   text-align: center;
+}
+
+input {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#name-input {
+  width: min(90vw, 20rem);
+  font-size: 2rem;
+}
+
+#chat-input {
+  width: min(90vw, 40rem);
+  font-size: 1.3rem;
+}
+
+#chat-content {
+  padding: 0;
+  list-style: none;
+  width: min(90vw, 40rem);
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 2px black;
+}
+
+li {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 5fr;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.3rem;
+}
+
+li:first-child {
+  padding-top: 1rem;
+}
+
+.message-name {
+  padding-right: 1rem;
+  text-align: right;
+}
+
+.message {
+  padding-left: 1rem;
 }
