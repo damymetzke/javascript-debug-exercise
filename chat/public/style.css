@@ -19,7 +19,7 @@ input {
 }
 
 #chat-content {
-  padding: 0;
+  padding: 0.5rem 0;
   list-style: none;
   width: min(90vw, 40rem);
   margin-left: auto;
@@ -31,19 +31,21 @@ li {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 5fr;
-  padding-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
   font-size: 1.3rem;
 }
 
-li:first-child {
-  padding-top: 1rem;
+li:nth-child(even) {
+  background-color: #ddd;
 }
 
 .message-name {
   padding-right: 1rem;
   text-align: right;
+  border-radius: 1rem;
 }
 
 .message {
