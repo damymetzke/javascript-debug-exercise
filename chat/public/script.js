@@ -36,4 +36,9 @@ function displayMessages() {
   }
 }
 
+const socket = new WebSocket("ws://localhost:3000");
+
+socket.addEventListener("open", _ => socket.send(JSON.stringify({value: "Hello World!"})));
+socket.addEventListener("message", event => console.log(event.data))
+
 displayMessages();
