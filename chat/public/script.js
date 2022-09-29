@@ -1,22 +1,10 @@
-const fakeMessages = [
-  {
-    name: "One",
-    message: "This is a chat message",
-    background: "#40dd64",
-    foreground: "#000",
-  },
-  {
-    name: "Two",
-    message: "This is another chat message",
-    background: "#604512",
-    foreground: "#fff",
-  },
-];
+const messages = [];
 
 function displayMessages() {
   const chatContent = document.getElementById("chat-content");
+  chatContent.innerHTML = "";
 
-  for (const { name, message, background, foreground } of fakeMessages) {
+  for (const { name, message, background, foreground } of messages) {
     const messageName = document.createElement("div");
     const messageContent = document.createElement("div");
 
@@ -38,7 +26,10 @@ function displayMessages() {
 
 const socket = new WebSocket("ws://localhost:3000");
 
-socket.addEventListener("open", _ => socket.send(JSON.stringify({value: "Hello World!"})));
-socket.addEventListener("message", event => console.log(event.data))
+socket.addEventListener("open", _ => socket.send(JSON.stringify({ value: "Hello World!" })));
+socket.addEventListener("message", event => {
+  messages.push(JSON.parse(event.data));
+  displayMessages();
+})
 
 displayMessages();
