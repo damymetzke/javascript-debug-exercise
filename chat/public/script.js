@@ -32,4 +32,33 @@ socket.addEventListener("message", event => {
   displayMessages();
 })
 
-displayMessages();
+const name = document.getElementById("name");
+const nameInput = document.getElementById("name-input");
+
+name.addEventListener("submit", () => {
+  const userName = nameInput.value;
+  name.classList.add("hidden");
+
+  const chat = document.getElementById("chat");
+  const chatInput = document.getElementById("chat-input");
+
+  chat.classList.remove("hidden");
+
+  chat.addEventListener("submit", () => {
+    const payload = {
+      name: userName,
+      message: chatInput.value,
+    };
+
+    fetch("/", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(payload),
+    })
+
+    chatInput.value = "";
+  })
+})
+

@@ -4,10 +4,12 @@ html
     link(rel="stylesheet" href="style.css")
     script(defer src="script.js")
   body
+    iframe#dummy(name="dummy" style="display: none")
     h1 Chatroom
-    div#name
+    form(action="" target="dummy")#name
       h2 Please enter a diplay name
       input#name-input
-    div#chat
+      button#name-submit(type="submit") Enter chat
+    form(action="" target="dummy")#chat.hidden
       ul#chat-content
       input#chat-input
